@@ -1,0 +1,77 @@
+{
+  "type": "webhook",
+  "name": "verify_identity",
+  "description": "Verifies the caller's identity with their NovaMart account number and the postcode on the account. Returns success true with the customer's name, or success false. Required before changing a shipping address or sharing any account-specific information.",
+  "api_schema": {
+    "url": "https://certification-elevenlabs.vercel.app/api/verify_identity",
+    "method": "POST",
+    "path_params_schema": [],
+    "query_params_schema": [],
+    "request_body_schema": {
+      "id": "body",
+      "type": "object",
+      "description": "The caller's identity details used for verification.",
+      "required": true,
+      "properties": [
+        {
+          "id": "account_number",
+          "type": "string",
+          "description": "The caller's 8-digit NovaMart account number, digits only, for example 10000001.",
+          "dynamic_variable": "",
+          "constant_value": "",
+          "value_type": "llm_prompt",
+          "required": true
+        },
+        {
+          "id": "postcode",
+          "type": "string",
+          "description": "The postcode on the caller's account, digits only, for example 94107.",
+          "dynamic_variable": "",
+          "constant_value": "",
+          "value_type": "llm_prompt",
+          "required": true
+        }
+      ],
+      "value_type": "llm_prompt"
+    },
+    "request_headers": [],
+    "content_type": "application/json",
+    "auth_connection": null,
+    "mtls_auth_connection": null,
+    "mtls_on_token_request": false,
+    "response_filter": null
+  },
+  "response_timeout_secs": 20,
+  "follow_redirects": false,
+  "follow_redirects_allowed_domains": [],
+  "dynamic_variables": {
+    "dynamic_variable_placeholders": {}
+  },
+  "assignments": [
+    {
+      "dynamic_variable": "verified",
+      "value_path": "success",
+      "sanitize": true,
+      "preserve_native_type": true
+    },
+    {
+      "dynamic_variable": "verified_account_number",
+      "value_path": "account_number",
+      "sanitize": true,
+      "preserve_native_type": true
+    },
+    {
+      "dynamic_variable": "customer_name",
+      "value_path": "customer_name",
+      "sanitize": true,
+      "preserve_native_type": true
+    }
+  ],
+  "interruption_mode": "allow",
+  "pre_tool_speech": "auto",
+  "tool_call_sound": null,
+  "tool_call_sound_behavior": "auto",
+  "execution_mode": "immediate",
+  "tool_error_handling_mode": "auto",
+  "response_mocks": []
+}

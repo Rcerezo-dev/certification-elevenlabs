@@ -1,0 +1,67 @@
+{
+  "type": "webhook",
+  "name": "update_shipping_address",
+  "description": "Changes the shipping address of an order that is still processing. Call it only after the caller has confirmed the complete new address. After success, confirm the change to the caller by street name only.",
+  "api_schema": {
+    "url": "https://certification-elevenlabs.vercel.app/api/update_shipping_address",
+    "method": "POST",
+    "path_params_schema": [],
+    "query_params_schema": [],
+    "request_body_schema": {
+      "id": "body",
+      "type": "object",
+      "description": "The verified account, the order, and the new address the caller confirmed.",
+      "required": true,
+      "properties": [
+        {
+          "id": "account_number",
+          "type": "string",
+          "description": "Verified account number, taken from the verify_identity result.",
+          "dynamic_variable": "verified_account_number",
+          "constant_value": "",
+          "value_type": "dynamic_variable",
+          "required": true
+        },
+        {
+          "id": "order_id",
+          "type": "string",
+          "description": "Order ID that was looked up and confirmed as processing.",
+          "dynamic_variable": "current_order_id",
+          "constant_value": "",
+          "value_type": "dynamic_variable",
+          "required": true
+        },
+        {
+          "id": "new_address",
+          "type": "string",
+          "description": "The complete new shipping address the caller confirmed: street and number, city, state, and ZIP code.",
+          "dynamic_variable": "",
+          "constant_value": "",
+          "value_type": "llm_prompt",
+          "required": true
+        }
+      ],
+      "value_type": "llm_prompt"
+    },
+    "request_headers": [],
+    "content_type": "application/json",
+    "auth_connection": null,
+    "mtls_auth_connection": null,
+    "mtls_on_token_request": false,
+    "response_filter": null
+  },
+  "response_timeout_secs": 20,
+  "follow_redirects": false,
+  "follow_redirects_allowed_domains": [],
+  "dynamic_variables": {
+    "dynamic_variable_placeholders": {}
+  },
+  "assignments": [],
+  "interruption_mode": "allow",
+  "pre_tool_speech": "auto",
+  "tool_call_sound": null,
+  "tool_call_sound_behavior": "auto",
+  "execution_mode": "immediate",
+  "tool_error_handling_mode": "auto",
+  "response_mocks": []
+}
