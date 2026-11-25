@@ -1,0 +1,7 @@
+{
+  "name": "novamart-mock-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mock webhook tools for the NovaMart ElevenLabs agent (lookup_order, verify_identity, update_shipping_address)"
+}
